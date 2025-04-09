@@ -97,7 +97,7 @@ export default function DragAndDropLayout({ initialColumns }: Props) {
      <div key={column.id} className="w-1/2 flex flex-col items-end gap-6">
       <SortableContext items={column.items.map((i) => i.id)} strategy={verticalListSortingStrategy}>
        {column.items.map((item) => (
-        <SortableItem key={item.id} id={item.id}>
+        <SortableItem key={item.id} id={item.id} activeId={activeId}>
          {item.content}
         </SortableItem>
        ))}
@@ -109,13 +109,14 @@ export default function DragAndDropLayout({ initialColumns }: Props) {
  );
 }
 
-function SortableItem({ id, children }: { id: string; children: React.ReactNode }) {
+function SortableItem({ id, children, activeId }: { id: string; children: React.ReactNode; activeId: string | null }) {
  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
  const style = {
   transform: CSS.Transform.toString(transform),
   transition,
-  cursor: "grab"
+  cursor: "grab",
+  backgroundColor: id === activeId ? "lightblue" : "transparent",
  };
 
  return (

@@ -16,7 +16,6 @@ import Education from "@/components/Education";
 import Experience from "@/components/Experience";
 import Language from "@/components/Language";
 import Bullet from "@/components/Bullet";
-import Project from "@/components/Project";
 
 import {
   resumeData,
@@ -26,6 +25,8 @@ import {
   languages as initialLanguages,
   projects as initialProjects,
 } from "@/data/resumeData";
+import type { ProjectType } from "@/types/Project";
+import Project from "@/components/Project";
 
 function SortableSectionItem({ id, children }: { id: string; children: React.ReactNode }) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -42,7 +43,7 @@ function SortableSectionItem({ id, children }: { id: string; children: React.Rea
   );
 }
 
-function SortableProjectItem({ id, project }: { id: string; project: any }) {
+function SortableProjectItem({ id, project }: { id: string; project: ProjectType }) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
   const style = {
