@@ -65,17 +65,21 @@ export default function Page() {
   const [rightSections, setRightSections] = useState(["contacts", "education", "languages"]);
   const [projects, setProjects] = useState(initialProjects);
 
-  const handleSectionDragEnd = (event: any, setSections: any, sections: string[]) => {
+  const handleSectionDragEnd = (
+    event: import("@dnd-kit/core").DragEndEvent,
+    setSections: React.Dispatch<React.SetStateAction<string[]>>,
+    sections: string[]
+  ) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
 
-    const oldIndex = sections.indexOf(active.id);
-    const newIndex = sections.indexOf(over.id);
+    const oldIndex = sections.indexOf(active.id as string);
+    const newIndex = sections.indexOf(over.id as string);
 
     setSections(arrayMove(sections, oldIndex, newIndex));
   };
 
-  const handleProjectsDragEnd = (event: any) => {
+  const handleProjectsDragEnd = (event: import("@dnd-kit/core").DragEndEvent) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
 
@@ -86,17 +90,17 @@ export default function Page() {
   };
 
   return (
-    <div className="p-40">
+    <div className="px-4 py-8 sm:px-10 md:px-20 xl:p-40">
       <HeaderInfo {...resumeData} />
 
-      <div className="flex">
-        <div className="w-3/5">
+      <div className="flex flex-col lg:flex-row gap-10">
+        <div className="w-full lg:w-3/5">
           <DndContext sensors={sensors} onDragEnd={(e) => handleSectionDragEnd(e, setLeftSections, leftSections)}>
             <SortableContext items={leftSections} strategy={verticalListSortingStrategy}>
               {leftSections.map((section) => (
                 <SortableSectionItem key={section} id={section}>
                   {section === "skills" && (
-                    <div className="my-20">
+                    <div className="my-10">
                       <h3 className="text-2xl font-semibold text-gray-700">Habilidades</h3>
                       <div className="flex flex-wrap w-full">
                         {initialSkills.map((skill, index) => (
@@ -105,7 +109,6 @@ export default function Page() {
                       </div>
                     </div>
                   )}
-
                   {section === "experience" && (
                     <div className="my-10">
                       <h3 className="text-2xl font-semibold text-gray-700 mb-3">Experiências</h3>
@@ -120,19 +123,19 @@ export default function Page() {
           </DndContext>
         </div>
 
-        <div className="w-2/5 flex flex-col items-end">
+        <div className="w-full lg:w-2/5 flex flex-col items-start lg:items-end">
           <DndContext sensors={sensors} onDragEnd={(e) => handleSectionDragEnd(e, setRightSections, rightSections)}>
             <SortableContext items={rightSections} strategy={verticalListSortingStrategy}>
               {rightSections.map((section) => (
                 <SortableSectionItem key={section} id={section}>
                   {section === "contacts" && (
-                    <div className="w-72 max-w-xs my-8">
+                    <div className="w-full max-w-xs my-8">
                       <ContactInfo {...resumeData.contacts} />
                     </div>
                   )}
 
                   {section === "education" && (
-                    <div className="flex flex-col items-start w-72 max-w-xs my-8">
+                    <div className="flex flex-col items-start w-full max-w-xs my-8">
                       <h3 className="text-2xl font-semibold text-gray-700">Educação</h3>
                       {initialEducation.map((edu, index) => (
                         <Education key={index} {...edu} />
@@ -141,7 +144,7 @@ export default function Page() {
                   )}
 
                   {section === "languages" && (
-                    <div className="flex flex-col items-start w-72 max-w-xs my-8">
+                    <div className="flex flex-col items-start w-full max-w-xs my-8">
                       <h3 className="text-2xl font-semibold text-gray-700">Idiomas</h3>
                       {initialLanguages.map((lang, index) => (
                         <Language key={index} {...lang} />
@@ -156,10 +159,10 @@ export default function Page() {
       </div>
 
       <div className="flex flex-col my-10">
-        <h3 className="text-2xl font-semibold text-gray-700">Projetos</h3>
+        <h3 className="text-2xl font-semibold text-gray-700 mb-4">Projetos</h3>
         <DndContext sensors={sensors} onDragEnd={handleProjectsDragEnd}>
           <SortableContext items={projects.map((p) => p.title)} strategy={verticalListSortingStrategy}>
-            <div className="grid grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.map((project) => (
                 <SortableProjectItem key={project.title} id={project.title} project={project} />
               ))}
