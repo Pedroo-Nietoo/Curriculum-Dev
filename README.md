@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dev Curriculum 
 
-## Getting Started
+Currículo universal para desenvolvedores O projeto é uma aplicação web que apresenta um currículo responsivo e interativo. Através do preenchimento do arquiovo `resumeData.ts`, o usuário pode personalizar as informações que deseja exibir no currículo.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 📄 `resumeData.ts` – Dados de Currículo
+
+Este arquivo exporta os dados do currículo que serão utilizados pela aplicação. Ele deve estar localizado em:  
+`/src/data/resumeData.ts`
+
+Crie um arquivo chamado `resumeData.ts` no diretório `src/data` com o seguinte conteúdo e estrutura.
+
+### 📌 Estrutura esperada
+
+```ts
+export const resumeData = {
+  name: string,
+  title: string,
+  birthDate: string,
+  address: string,
+  phone: string,
+  contacts: {
+    email: string,
+    linkedin: string,
+    github: string,
+  }
+};
+
+export const skills: string[] = [
+  "JavaScript",
+  "Node.js",
+  ...
+];
+
+export const experiences = [
+  {
+    title: string,
+    company: string,
+    date: string,
+    description: string
+  },
+  ...
+];
+
+export const education = [
+  {
+    graduation: string,
+    institution: string,
+    date: string
+  },
+  ...
+];
+
+export const languages = [
+  {
+    name: string,
+    proeficiency: string,
+    level: string
+  },
+  ...
+];
+
+export const projects = [
+  {
+    title: string,
+    description: string,
+    technologies: string[],
+    url: string
+  },
+  ...
+];
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

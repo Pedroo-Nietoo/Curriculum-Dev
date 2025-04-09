@@ -93,6 +93,7 @@ export default function Home() {
                 title={project.title}
                 description={project.description}
                 technologies={project.technologies}
+                url={project.url}
               />
             ))
           }

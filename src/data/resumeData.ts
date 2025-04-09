@@ -119,6 +119,7 @@ export const projects = [
       "WebSocket",
       "Stripe"
     ],
+    url: 'https://github.com/Pedroo-Nietoo/Eventer-API',
   },
   {
     title: "URL Shortener",
@@ -135,6 +136,7 @@ export const projects = [
       "JWT",
       "PostgreSQL",
     ],
+    url: 'https://github.com/Pedroo-Nietoo/URL-Shortener',
   },
   {
     title: "TypeORM Docs",
@@ -146,5 +148,6 @@ export const projects = [
       "NPM",
       "GitHub Workflows",
     ],
+    url: 'https://github.com/Pedroo-Nietoo/TypeORM-Docs',
   },
 ];
